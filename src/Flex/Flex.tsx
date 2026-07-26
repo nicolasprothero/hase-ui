@@ -1,7 +1,7 @@
 import React from "react";
 
 export interface FlexProps extends React.HTMLAttributes<HTMLDivElement> {
-  direction?: "row" | "column" | "row-reverse" | "column-reverse";
+  flexDir?: "row" | "column" | "row-reverse" | "column-reverse";
   justify?:
     | "start"
     | "center"
@@ -41,7 +41,7 @@ const alignMap: Record<string, string> = {
 };
 
 export const Flex = ({
-  direction = "row",
+  flexDir = "row",
   justify = "start",
   align = "stretch",
   gap = 0,
@@ -64,7 +64,7 @@ export const Flex = ({
       {...rest}
       style={{
         display: "flex",
-        flexDirection: direction,
+        flexDirection: flexDir,
         justifyContent: justifyMap[justify],
         alignItems: alignMap[align],
         flexWrap: wrap ? "wrap" : "nowrap",

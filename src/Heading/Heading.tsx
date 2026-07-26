@@ -1,37 +1,49 @@
 import React from "react";
 
-export interface DivProps extends React.HTMLAttributes<HTMLDivElement> {
-  bgColor?: string;
+export interface HeadingProps extends React.HTMLAttributes<HTMLElement> {
+  as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
   color?: string;
+  bgColor?: string;
+  fontSize?: string | number;
+  fontWeight?: string | number;
+  align?: "left" | "center" | "right" | "justify";
+  lineHeight?: string | number;
   padding?: string | number;
   paddingY?: string | number;
   paddingX?: string | number;
   margin?: string | number;
   width?: string | number;
-  height?: string | number;
-  borderRadius?: string | number;
 }
 
-export const Div = ({
-  bgColor,
+export const Heading = ({
+  as = "h1",
   color,
+  bgColor,
+  fontSize,
+  fontWeight,
+  align,
+  lineHeight,
   padding,
   paddingY,
   paddingX,
   margin,
   width,
-  height,
-  borderRadius,
   style,
   children,
   ...rest
-}: DivProps) => {
+}: HeadingProps) => {
+  const Tag = as;
+
   return (
-    <div
+    <Tag
       {...rest}
       style={{
-        backgroundColor: bgColor,
         color,
+        backgroundColor: bgColor,
+        fontSize,
+        fontWeight,
+        textAlign: align,
+        lineHeight: lineHeight,
         padding: padding,
         paddingTop: paddingY,
         paddingBottom: paddingY,
@@ -39,12 +51,10 @@ export const Div = ({
         paddingRight: paddingX,
         margin,
         width,
-        height,
-        borderRadius,
         ...style,
       }}
     >
       {children}
-    </div>
+    </Tag>
   );
 };

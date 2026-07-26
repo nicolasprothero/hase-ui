@@ -1,38 +1,34 @@
 import React from "react";
 
-export interface DivProps extends React.HTMLAttributes<HTMLDivElement> {
-  bgColor?: string;
+export interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   color?: string;
-  padding?: string | number;
+  bgColor?: string;
   paddingY?: string | number;
   paddingX?: string | number;
   margin?: string | number;
   width?: string | number;
   height?: string | number;
   borderRadius?: string | number;
+  // isRounded?: boolean;
 }
 
-export const Div = ({
+export const Image = ({
   bgColor,
-  color,
-  padding,
   paddingY,
   paddingX,
   margin,
   width,
   height,
   borderRadius,
+  // isRounded,
   style,
-  children,
   ...rest
-}: DivProps) => {
+}: ImageProps) => {
   return (
-    <div
+    <img
       {...rest}
       style={{
         backgroundColor: bgColor,
-        color,
-        padding: padding,
         paddingTop: paddingY,
         paddingBottom: paddingY,
         paddingLeft: paddingX,
@@ -43,8 +39,6 @@ export const Div = ({
         borderRadius,
         ...style,
       }}
-    >
-      {children}
-    </div>
+    />
   );
 };

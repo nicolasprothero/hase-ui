@@ -11,7 +11,7 @@ export interface HeaderProps extends React.HTMLAttributes<HTMLElement> {
 
 export const Header = ({
   color = "#000",
-  bgColor = "#fff",
+  bgColor = "rgb(256 256 256 / 96%)",
   paddingY = "16px",
   paddingX = "24px",
   margin = "0",
@@ -31,7 +31,7 @@ export const Header = ({
         justifyContent: "center",
         alignItems: "center",
         width: "100%",
-        borderBottom: "1px black solid",
+        // borderBottom: "1px black solid",
         color,
         backgroundColor: bgColor,
         paddingTop: paddingY,
