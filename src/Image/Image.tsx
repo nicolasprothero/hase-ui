@@ -36,9 +36,12 @@ export const Image = ({
     }
   }, []);
 
-  const resolvedWidth = width ?? "auto";
-  const resolvedHeight = height ?? "auto";
-  const isFixedFrame = width !== undefined && height !== undefined;
+  const isAutoWidth = width === undefined || width === "auto";
+  const isAutoHeight = height === undefined || height === "auto";
+  const isFixedFrame = !isAutoWidth && !isAutoHeight;
+
+  const resolvedWidth = isAutoWidth ? "auto" : width;
+  const resolvedHeight = isAutoHeight ? "auto" : height;
 
   return (
     <div
@@ -46,10 +49,13 @@ export const Image = ({
         position: "relative",
         width: resolvedWidth,
         height: resolvedHeight,
+        minHeight: !loaded && isAutoHeight ? "200px" : undefined,
+        minWidth: !loaded && isAutoWidth ? "200px" : undefined,
         borderRadius,
         overflow: "hidden",
         backgroundColor: skeletonColor,
         display: "inline-block",
+        flexShrink: 0,
       }}
     >
       {!loaded && (

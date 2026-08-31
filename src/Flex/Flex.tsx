@@ -21,6 +21,10 @@ export interface FlexProps extends React.HTMLAttributes<HTMLDivElement> {
   marginY?: string | number;
   width?: string | number;
   height?: string | number;
+  maxWidth?: string | number;
+  minWidth?: string | number;
+  maxHeight?: string | number;
+  minHeight?: string | number;
 }
 
 const justifyMap: Record<string, string> = {
@@ -55,6 +59,10 @@ export const Flex = ({
   marginY,
   width,
   height,
+  maxWidth,
+  minWidth,
+  maxHeight,
+  minHeight,
   style,
   children,
   ...rest
@@ -82,6 +90,10 @@ export const Flex = ({
         marginBottom: marginY,
         width,
         height,
+        maxWidth,
+        minWidth,
+        maxHeight,
+        minHeight,
         ...style,
       }}
     >
