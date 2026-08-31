@@ -25,6 +25,8 @@ export const Image = ({
   skeletonColor = "#f5f5f5",
   style,
   onLoad,
+  loading = "lazy",
+  decoding = "async",
   ...rest
 }: ImageProps) => {
   const [loaded, setLoaded] = useState(false);
@@ -70,6 +72,8 @@ export const Image = ({
       <img
         ref={imgRef}
         {...rest}
+        loading={loading}
+        decoding={decoding}
         onLoad={(e) => {
           setLoaded(true);
           onLoad?.(e);

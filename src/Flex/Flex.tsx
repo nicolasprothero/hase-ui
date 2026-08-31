@@ -25,6 +25,14 @@ export interface FlexProps extends React.HTMLAttributes<HTMLDivElement> {
   minWidth?: string | number;
   maxHeight?: string | number;
   minHeight?: string | number;
+  marginTop?: string | number;
+  marginRight?: string | number;
+  marginBottom?: string | number;
+  marginLeft?: string | number;
+  paddingTop?: string | number;
+  paddingRight?: string | number;
+  paddingBottom?: string | number;
+  paddingLeft?: string | number;
 }
 
 const justifyMap: Record<string, string> = {
@@ -57,6 +65,14 @@ export const Flex = ({
   margin,
   marginX,
   marginY,
+  marginTop,
+  marginRight,
+  marginBottom,
+  marginLeft,
+  paddingTop,
+  paddingRight,
+  paddingBottom,
+  paddingLeft,
   width,
   height,
   maxWidth,
@@ -72,6 +88,7 @@ export const Flex = ({
       {...rest}
       style={{
         display: "flex",
+        boxSizing: "border-box",
         flexDirection: flexDir,
         justifyContent: justifyMap[justify],
         alignItems: alignMap[align],
@@ -79,15 +96,15 @@ export const Flex = ({
         gap,
         backgroundColor: bgColor,
         padding: padding,
-        paddingTop: paddingY,
-        paddingBottom: paddingY,
-        paddingLeft: paddingX,
-        paddingRight: paddingX,
+        paddingTop: paddingTop ?? paddingY,
+        paddingBottom: paddingBottom ?? paddingY,
+        paddingLeft: paddingLeft ?? paddingX,
+        paddingRight: paddingRight ?? paddingX,
         margin: margin,
-        marginLeft: marginX,
-        marginRight: marginX,
-        marginTop: marginY,
-        marginBottom: marginY,
+        marginLeft: marginLeft ?? marginX,
+        marginRight: marginRight ?? marginX,
+        marginTop: marginTop ?? marginY,
+        marginBottom: marginBottom ?? marginY,
         width,
         height,
         maxWidth,

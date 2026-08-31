@@ -31,6 +31,7 @@ export const Div = ({
       {...rest}
       style={{
         backgroundColor: bgColor,
+        boxSizing: "border-box",
         color,
         padding: padding,
         paddingTop: paddingY,
