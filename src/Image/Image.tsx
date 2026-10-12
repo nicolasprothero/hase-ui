@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import { Button } from "../Button"; // adjust import path if Button lives in its own package folder, e.g. "../Button"
+import { Button } from "../Button";
 
 export interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   color?: string;
@@ -14,6 +14,7 @@ export interface ImageProps extends React.ImgHTMLAttributes<HTMLImageElement> {
   borderRadius?: string | number;
   skeletonColor?: string;
   allowFullscreen?: boolean;
+  aspectRatio?: string | number;
 }
 
 export const Image = ({
@@ -30,6 +31,7 @@ export const Image = ({
   loading = "lazy",
   decoding = "async",
   allowFullscreen = false,
+  aspectRatio,
   src,
   alt,
   ...rest
@@ -64,6 +66,9 @@ export const Image = ({
   const resolvedWidth = isAutoWidth ? "auto" : width;
   const resolvedHeight = isAutoHeight ? "auto" : height;
 
+  // if aspectRatio is given and at least one dimension is known, we never need the guess fallback
+  const hasKnownShape = isFixedFrame || aspectRatio !== undefined;
+
   return (
     <>
       <div
@@ -71,8 +76,11 @@ export const Image = ({
           position: "relative",
           width: resolvedWidth,
           height: resolvedHeight,
-          minHeight: !loaded && isAutoHeight ? "200px" : undefined,
-          minWidth: !loaded && isAutoWidth ? "200px" : undefined,
+          aspectRatio: !isFixedFrame ? aspectRatio : undefined,
+          minHeight:
+            !loaded && isAutoHeight && !hasKnownShape ? "200px" : undefined,
+          minWidth:
+            !loaded && isAutoWidth && !hasKnownShape ? "520px" : undefined,
           borderRadius,
           overflow: "hidden",
           backgroundColor: skeletonColor,
@@ -111,12 +119,13 @@ export const Image = ({
             paddingLeft: paddingX,
             paddingRight: paddingX,
             margin,
-            width: isFixedFrame ? "100%" : resolvedWidth,
-            height: isFixedFrame ? "100%" : resolvedHeight,
+            width: isFixedFrame ? "100%" : "100%",
+            height: isFixedFrame ? "100%" : "100%",
             borderRadius,
             opacity: loaded ? 1 : 0,
             transition: "opacity 0.3s ease",
             display: "block",
+            objectFit: !isFixedFrame && aspectRatio ? "cover" : undefined,
             ...style,
           }}
         />
