@@ -77,7 +77,7 @@ export const Image = ({
             !loaded && isAutoWidth && !isFixedFrame ? "200px" : undefined,
           borderRadius,
           overflow: "hidden",
-          backgroundColor: skeletonColor,
+          backgroundColor: "transparent",
           display: "inline-block",
           flexShrink: 0,
           cursor: allowFullscreen ? "pointer" : undefined,
@@ -89,7 +89,7 @@ export const Image = ({
             style={{
               position: "absolute",
               inset: 0,
-              backgroundColor: skeletonColor,
+              backgroundColor: "transparent",
             }}
           />
         )}
